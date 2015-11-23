@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<onyx-export-config xmlns="http://brisskit.org/xml/export-metadata-config/v3.0/em">
+
+	<!--+
+	    | Prefix for nominal ontology codes.
+	    |
+	    | Relevant for nominal AND real ontologies. 
+	    | The latter applies where generated codes are required for variables 
+	    | where a standard code does not exist.
+	    |
+	    | Required also for processing participant data from an export file.
+	    +-->
+	<code-prefix>CBO:</code-prefix>
+
+	<ontology-phase>
+	
+		<user-defined-procedure>uk.org.briccs.onyxexport.Export2OntologyUserImpl</user-defined-procedure>
+	
+	   <!--
+	    	 Table name for the ontology tree.
+	    	 Relevant only for a nominal ontology.
+	    -->
+		<ontology-root-name>onyx</ontology-root-name>
+						
+		<!--
+	    	 What values within the questionnaire form standard boolean-like answers.
+	    	 Relevant only for building a nominal ontology.
+	    -->	
+		<standard-booleans>
+			<value>Y</value>
+			<value>N</value>
+			<value>PNA</value>
+			<value>DK</value>
+			<value>Not_Recorded</value>
+			<value>Unknown</value>
+			<value>Other</value>
+			<value>Participant_Refused</value>
+			<value>Unable_Measure</value>
+		</standard-booleans>
+		
+		<!--
+			 Can be used to filter a nominal ontology.
+			
+		     The questionnaires section can be used to exclude:
+		     (1) whole sub-questionnaires 
+		     (2) whole sections of a sub-questionnaire
+		     (3) ranges of variables from sections of a sub-questionnaire.
+		-->
+		<questionnaires>
+			<filter questionnaire="BloodSamplesCollection">
+				<exclude name="QuestionnaireRun"/>
+				<exclude name="QuestionnaireMetric"/>
+				<exclude name="RegisteredParticipantTube">
+					<hint>tubeCode</hint>
+					<hint>barcode</hint>
+					<hint>prefixCode</hint>
+				</exclude>
+			</filter>		
+			<filter questionnaire="ConclusionQuestionnaire">
+				<exclude name="QuestionnaireRun"/>
+				<exclude name="QuestionnaireMetric"/>
+			</filter>
+			<filter questionnaire="Consent">
+				<exclude name="QuestionnaireRun"/>
+				<exclude name="QuestionnaireMetric"/>
+			</filter>
+			<filter questionnaire="DataSubmissionQuestionnaire" />
+			<filter questionnaire="EndContactQuestionnaire">
+				<exclude name="QuestionnaireRun"/>
+				<exclude name="QuestionnaireMetric"/>
+				<exclude name="MAIN">
+					<hint>pat_email1_cat</hint>
+					<hint>pat_email2_cat</hint>
+				</exclude>
+			</filter>
+			<filter questionnaire="ManualConsentQuestionnaire">
+				<exclude name="QuestionnaireRun"/>
+				<exclude name="QuestionnaireMetric"/>
+			</filter>
+			<filter questionnaire="MedicalHistoryInterviewQuestionnaire">
+				<exclude name="QuestionnaireRun"/>
+				<exclude name="QuestionnaireMetric"/>
+			</filter>
+			<filter questionnaire="MedicalHistoryQuestionnaire">
+				<exclude name="QuestionnaireRun"/>
+				<exclude name="QuestionnaireMetric"/>
+			</filter>
+			<filter questionnaire="Participants" alternateName="Participant" drivingEntity="true">
+				<exclude name="Admin/Interview"/>
+				<exclude name="Admin/Action"/>
+				<exclude name="Admin/ApplicationConfiguration"/>
+				<exclude name="Admin/StageInstance"/>
+				<exclude name="Admin/onyxVersion"/>
+			</filter>
+			<filter questionnaire="RecruitmentContextQuestionnaire">
+				<exclude name="QuestionnaireRun"/>
+				<exclude name="QuestionnaireMetric"/>
+			</filter>
+			<filter questionnaire="RiskFactorQuestionnaire">
+				<exclude name="QuestionnaireRun"/>
+				<exclude name="QuestionnaireMetric"/>
+			</filter>
+			<filter questionnaire="SamplePreliminaryQuestionnaire">
+				<exclude name="QuestionnaireRun"/>
+				<exclude name="QuestionnaireMetric"/>
+			</filter>
+			<filter questionnaire="UrineSamplesCollection">
+				<exclude name="QuestionnaireRun"/>
+				<exclude name="QuestionnaireMetric"/>
+				<exclude name="RegisteredParticipantTube">
+					<hint>tubeCode</hint>
+					<hint>barcode</hint>
+					<hint>prefixCode</hint>
+				</exclude>
+			</filter>
+			<filter questionnaire="VerbalConsentQuestionnaire">
+				<exclude name="QuestionnaireRun"/>
+				<exclude name="QuestionnaireMetric"/>
+			</filter>
+		</questionnaires>
+
+		<!--
+	    	 Hints over which variables are to form generated enumerations.
+	    	 Relevant only for building a nominal ontology.
+	    -->
+		<enumerated-concepts>
+			<!--
+		    	 The attribute name for enum AGE and RECENT_TIME are used programmatically.
+		    	 Do not alter! All other enum attribute name values are documentation only.
+		    	
+		    	 The hints and exclusion strings are applied to each variable name and its type.
+		    	 If a hint is contained in either it is a candidate for generating an enumeration.
+		    	 But may then be excluded if the exclude string is contained in either.
+		    -->
+			<enum name="AGE" first="0" last="119" group="10">
+				<hint>AGE</hint>
+				<hint>age</hint>
+				<hint>_age</hint>
+				<exclude>stage</exclude>
+			</enum>
+			<enum name="YEAR" first="1900" last="2019" group="10">
+				<hint>YEAR</hint>
+				<hint>year</hint>
+			</enum>
+			<!--
+		    	 RECENT_TIME enumerations have a fixed grouping of  
+		    	 "Today", "Yesterday" and "More than 24 hours".
+		    	 "Today", "Yesterday" are subdivided 
+		    	 into hours and 15 minute intervals.
+		    -->
+			<enum name="RECENT_TIME">
+				<hint>TIME_24</hint>
+				<hint>MORE_24_HOURS</hint>
+				<hint>_day</hint>
+				<hint>_hour</hint>
+				<hint>_min</hint>
+			</enum>
+			<enum name="CIGARETTE" first="0" last="79" group="10">
+				<hint>tobacco_cigquant</hint>
+				<hint>tobacco_cigmax</hint>
+			</enum>
+			<enum name="PIPE" first="0" last="10">
+				<hint>tobacco_piquant</hint>
+				<hint>tobacco_pimax</hint>
+			</enum>
+			<enum name="CIGARS" first="0" last="19" group="10">
+				<hint>tobacco_crquant</hint>
+				<!-- What should go here? This is a mistake. -->
+				<hint>tobacco_crquant</hint>
+			</enum>
+			<enum name="BEER" first="0" last="99" group="10">
+				<hint>alcohol_beer</hint>
+			</enum>
+			<enum name="WINE_SPIRITS" first="0" last="29" group="10">
+				<hint>alcohol_wwine</hint>
+				<hint>alcohol_rwine</hint>
+				<hint>alcohol_rowine</hint>
+				<hint>alcohol_spirits</hint>
+			</enum>
+			<enum name="RELATIVES" first="0" last="9">
+				<hint>fam_brothers</hint>
+				<hint>fam_sisters</hint>
+				<hint>fam_children</hint>
+			</enum>
+			<enum name="HEART_RATE" first="0" last="219" group="10">
+				<hint>epi_obshr</hint>
+			</enum>
+			<enum name="SYSTOLIC_BLOOD_PRESSURE" first="60" last="199" group="10">
+				<hint>epi_obssbp</hint>
+			</enum>
+			<enum name="DIASTOLIC_BLOOD_PRESSURE" first="50" last="159" group="10">
+				<hint>epi_obsdbp</hint>
+			</enum>
+			<enum name="HEIGHT" first="90" last="279" group="10">
+				<hint>epi_obsht</hint>
+			</enum>
+			<enum name="WEIGHT" first="40" last="279" group="10">
+				<hint>epi_obswt</hint>
+			</enum>
+			<enum name="WAIST" first="50" last="199" group="10">
+				<hint>epi_obswaist</hint>
+			</enum>
+			<enum name="HIPS" first="60" last="259" group="10">
+				<hint>epi_obships</hint>
+			</enum>
+			<enum name="BICEPS" first="5" last="50">
+				<hint>epi_obsbiceps</hint>
+			</enum>
+			<enum name="TRICEPS" first="5" last="50">
+				<hint>epi_obstriceps</hint>
+			</enum>
+			<enum name="SUBSCAPULAR" first="5" last="50">
+				<hint>epi_obssubscapular</hint>
+			</enum>
+			<enum name="SUPRA_ILIAC" first="5" last="50">
+				<hint>epi_obssuprailiac</hint>
+			</enum>			
+			<enum name="DISCRETE_NUMBER" first="1" last="10">
+				<hint>integer</hint>
+			</enum>			
+		</enumerated-concepts>
+	
+	
+		<ethnicity variableName="pat_ethnicity" >
+			<code name="WHITE BRITISH" description="WHITE BRITISH">A</code>
+			<code name="WHITE IRISH" description="WHITE IRISH">B</code>
+			<code name="WHITE OTHER WHITE BACKGROUND" description="WHITE OTHER WHITE BACKGROUND">C</code>
+	        <code name="MIXED WHITE AND BLACK CARIBBEAN" description="MIXED WHITE AND BLACK CARIBBEAN">D</code>
+			<code name="MIXED WHITE AND BLACK AFRICAN" description="MIXED WHITE AND BLACK AFRICAN">E</code>
+			<code name="MIXED WHITE AND ASIAN" description="MIXED WHITE AND ASIAN">F</code>
+			<code name="ANY OTHER MIXED BACKGROUND" description="ANY OTHER MIXED BACKGROUND">G</code>
+			<code name="ASIAN/ASIAN BRITISH INDIAN" description="ASIAN/ASIAN BRITISH INDIAN">H</code>
+			<code name="ASIAN/ASIAN BRITISH PAKISTANI" description="ASIAN/ASIAN BRITISH PAKISTANI">J</code>
+			<code name="ASIAN/ASIAN BRITISH BANGLADESH" description="ASIAN/ASIAN BRITISH BANGLADESH">K</code>
+			<code name="ANY OTHER ASIAN BACKGROUND" description="ANY OTHER ASIAN BACKGROUND">L</code>
+			<code name="BLACK/BLACK BRITISH CARIBBEAN" description="BLACK/BLACK BRITISH CARIBBEAN">M</code>
+			<code name="BLACK/BLACK BRITISH AFRICAN" description="BLACK/BLACK BRITISH AFRICAN">N</code>
+			<code name="ANY OTHER BLACK BACKGROUND" description="ANY OTHER BLACK BACKGROUND">P</code>
+			<code name="OTHER ETHNIC GROUP CHINESE" description="OTHER ETHNIC GROUP CHINESE">R</code>
+			<code name="ANY OTHER ETHNIC GROUP" description="ANY OTHER ETHNIC GROUP">S</code>
+			<code name="NOT STATED" description="NOT STATED">Z</code>
+		</ethnicity>
+			
+	</ontology-phase>
+	
+</onyx-export-config>

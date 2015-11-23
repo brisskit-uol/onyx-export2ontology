@@ -1,0 +1,33 @@
+MetadataRefiner \
+    -input=/home/jeff/ws-briccs/onyx-export2ontology-jl-trac113/src/test/resources/b-metadata \
+	-config=/home/jeff/ws-briccs/onyx-export2ontology-jl-trac113/src/test/resources/export-metadata-config.xml \
+	-refine=/home/jeff/ws-briccs/onyx-export2ontology-jl-trac113/target/work/c-refined-metadata
+	-enum=/home/jeff/ws-briccs/onyx-export2ontology-jl-trac113/target/work/d-refined-metadata-enums \
+	-name=Refined-Metadata.xml
+	
+	
+	
+-input=/home/jeff/ws-briccs/onyx-export2ontology-jl-trac113/src/test/resources/b-metadata 
+-config=/home/jeff/ws-briccs/onyx-export2ontology-jl-trac113/src/test/resources/export-metadata-config.xml 
+-refine=/home/jeff/ws-briccs/onyx-export2ontology-jl-trac113/target/work/c-refined-metadata
+-enum=/home/jeff/ws-briccs/onyx-export2ontology-jl-trac113/target/work/d-refined-metadata-enums 
+-name=Refined-Metadata.xml
+
+
+-config=/home/jeff/ws-briccs/i2b2-procedures-jl-trac113-v15/procedures/config/export-metadata-config.xml
+-i=/home/jeff/ws-briccs/i2b2-procedures-jl-trac113-v15/procedures/work/20120504/b-metadata
+-n=Refined-Metadata.xml
+-r=/home/jeff/ws-briccs/i2b2-procedures-jl-trac113-v15/procedures/work/20120504/c-refined-metadata
+-e=/home/jeff/ws-briccs/i2b2-procedures-jl-trac113-v15/procedures/work/20120504/d-refined-metadata-enums
+
+-input=path-to-onyx-metadata-directory
+	 *        -config=path-to-xml-config-file
+	 *        -refine=path-to-main-refine-directory
+	 *        -enum=path-to-main-refine-enum-directory
+	 *        -name=refined-metadata-file-name
+	 
+-input=/home/jeff/ws-brisskit/onyx-export2ontology-jl-testdatagen/src/test/resources/b-metadata \
+-config=/home/jeff/ws-brisskit/onyx-export2ontology-jl-testdatagen/src/test/resources/export-ontology-config.xml \
+-refine=/home/jeff/ws-brisskit/onyx-export2ontology-jl-testdatagen/target/work/c-refined-metadata
+-enum=/home/jeff/ws-brisskit/onyx-export2ontology-jl-testdatagen/target/work/d-refined-metadata-enums \
+-name=Refined-Metadata.xml
