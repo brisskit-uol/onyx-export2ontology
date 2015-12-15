@@ -1,0 +1,29 @@
+#=======================================================================================================
+# Java programs that deal with deriving an i2b2 ontology from metadata held within an Onyx export file
+#=======================================================================================================
+
+ Usage: OnyxVariables2Metadata {Parameters}       
+        Parameters:
+         -input=path-to-onyx-export-directory
+         -output=path-to-working-directory
+        Notes:
+         (1) Parameter triggers can be shortened to the first letter; ie: -i,-o.
+         (2) The input parameter is the only mandatory one.
+         (3) If the output path parameter is omitted, output is directed to standard out.
+         (4) If the output path parameter is provided, the working directory must not exist.
+         
+         
+ Usage: MetadataRefiner {Parameters}       
+	    Parameters:
+	     -input=path-to-onyx-metadata-directory
+	     -config=path-to-xml-config-file
+	     -refine=path-to-main-refine-directory
+	     -enum=path-to-main-refine-enum-directory
+	     -name=refined-metadata-file-name
+	    Notes:
+	     (1) Parameter triggers can be shortened to the first letter; ie: -i, -c, -r,-e,-n.
+	     (2) All parameters are mandatory.
+	     (3) The input path must exist.
+	     (4) The config file must exist (See test data for examples)
+	     (5) The refine and enum paths must not exist.
+         (6) Suggested refined metadata file name: Refined-Metadata.xml.
